@@ -38,11 +38,6 @@ public class BookController {
 
     @RequestMapping("/getListByPage")
     public Result<PageResult<BookInfo>> getListByPage(PageRequest pageRequest, HttpSession httpSession) {
-        UserInfo userInfo = (UserInfo) httpSession.getAttribute(Constants.USER_SESSION_KEY);
-        if(userInfo == null) {
-            return Result.unLogin();
-        }
-
         if(pageRequest.getCurrentPage() < 0) {
             return Result.fail("非法参数");
         }
